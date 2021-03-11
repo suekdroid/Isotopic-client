@@ -1,0 +1,117 @@
+/* RESET */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* RESET END */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --primaryDarkest: rgb(25, 27, 36);
+  --primaryDark: rgb(41, 43, 55);
+  --primaryLight: rgb(54, 57, 70);
+  --accentColor: rgb(28, 100, 242);
+  --inputColor: rgb(54, 57, 70);
+  --hoverColor: rgb(54, 57, 70);
+  --textColor: rgb(206, 206, 206);
+  --headlineColor: rgb(235, 235, 235);
+  --iconColor: rgb(206, 206, 206);
+  --borderColor: rgb(0, 0, 0, 0.2);
+  --borderRadius: 3px;
+
+  color: var(--textColor);
+  background-color: var(--primaryDarkest);
+  font-size: 16px;
+}
+
+.card{
+  background-color: var(--primaryDark);
+  padding: 20px;
+  box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+h2{
+  font-size: 1.4em;
+}
+
+input {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: var(--textColor);
+  background-color: var(--inputColor);
+  border-color: var(--borderColor);
+  outline: none;
+  border-width: 1px;
+  border-radius: 5px;
+  height: 35px;
+  font-size: 1em;
+  padding-left: 6px;
+}
+
+input[type="checkbox"] {
+  height: 20px;
+  width: 20px;
+}
+
+input[type="checkbox"]:checked {
+  color: var(--accentColor);
+}
+
+button{
+  outline-color: rgba(206, 206, 206, 0.1);
+  border: none;
+  font-size: 18px;
+  padding: 8px;
+  background: var(--accentColor);
+  border-radius: 5px;
+  color: whitesmoke;
+}
+button:active {transform: translate(1px, 1px);}
+button:hover {opacity: 90%;}
+
+.btnIcon{
+  background-color: transparent;
+  outline: none;
+  border-radius: 50%;
+}
+.btnIcon:hover{
+  fill-opacity: 70%;
+}
+
+/* Spinner */
+
+.spinner {
+  border: 4px solid #f3f3f3; /* Light grey */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
