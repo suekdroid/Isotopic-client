@@ -1,30 +1,35 @@
 import { useState } from "react"
 import { flexColumn, flexRow, pageWrapper, btnText } from "../../style/SharedStyles"
+import { inputvalidator } from '../../validation/inputvalidator'
+import { TextInput } from '../ui/TextInput'
 
 function Login(props){
 
     const [userCredentials, updateCredentials] = useState({ username: '', password: '', rememberSignIn: false, type: 'LOGIN' })
 
+    const [uiErrors, updateUIErrors] = useState(new Map())
+
     const submitCredentials = (e) => {
         e.preventDefault()
-        const validationError = validateUserInput()
-        if(validationError) {
-            props.messageCallback(validationError)
-        } else {
-            console.log('Submitting credentials');
+        if(isInputValid()) {
             props.onSubmitCredentials(userCredentials)
+        } else {
+            console.log('ui error');
         }
     }
 
-    const validateUserInput = () => {
-        let validationError = {message:'', type:'warning'}
-        if(!userCredentials.username.includes('#')){
-            validationError.message = 'Some UI warning'
-        } else if(userCredentials.password.length<=5){
-            validationError.message = 'Password must be more than 5 characters'
-        }
-        return (validationError.message) ? validationError : null
+    const isInputValid = () => {
+        clearUIErrors()
+        const username = userCredentials.username
+        const password = userCredentials.password
+        const validationErrors = inputvalidator({username, password})
+        if(validationErrors.size > 0){
+            updateUIErrors(new Map([...validationErrors]))
+            return false
+        } else { return true }
     }
+
+    const clearUIErrors = () => updateUIErrors((prev)=> new Map(prev.clear()))
 
     const navigateToSignUp = (e) => {
         e.preventDefault()
@@ -33,31 +38,28 @@ function Login(props){
 
     return (
         <div style={ pageWrapper }>
+            
             <form
                 action="submit"
                 onSubmit={submitCredentials}
                 className="card" 
-                style={{...flexColumn}}>
+                style={{...flexColumn, ...{padding: '60px 60px 80px 60px'}}}>
 
-                <h2>
-                    Login
-                </h2>
+                <h2>Login</h2>
 
-                <input 
+                <TextInput
+                    inputType="text"
+                    label="Username"
                     value={userCredentials.username}
-                    onChange={(e)=>updateCredentials({...userCredentials, username:e.target.value})}
-                    required
-                    type="username" 
-                    placeholder="Username"/>
+                    updateInput={(data)=>updateCredentials({...userCredentials, username:data})}
+                    validationError={uiErrors.get('username')}/>
 
-                <input 
+                <TextInput
+                    inputType="password"
+                    label="Password"
                     value={userCredentials.password}
-                    onChange={(e)=>updateCredentials({...userCredentials, password:e.target.value})}
-                    required
-                    type="password" 
-                    placeholder="Password"
-                    autoComplete="current-password"
-                    />
+                    updateInput={(data)=>updateCredentials({...userCredentials, password:data})}
+                    validationError={uiErrors.get('password')}/>    
 
                 <div style={ flexRow }>
                     <input 

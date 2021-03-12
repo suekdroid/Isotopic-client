@@ -1,17 +1,28 @@
 import './App.css';
-import { NotePage } from './components/notes/NotePage'
-import { LoginPage } from './components/authentication/CredentialsController'
+import { NotePage } from './routes/NotePage'
+import { LoginPage } from './routes/LoginPage'
 import { useState } from 'react';
-import { Notification } from './components/Util/Notification'
+import { Notification } from './components/ui/Notification'
+
+interface Props {
+  message: string
+  type: string
+}
 
 //Wrap in user context state
 function App() {
+  //REDUX USERSTATE
   const [userState, updateUserState] = useState({username: '', authenticated: false})
-  const handleSignIn = (username) => updateUserState({username:username,authenticated:true})
+  const handleSignIn = ({ username } : {username: string}) => {
+    updateUserState({username:username,authenticated:true})
+    showMessage({message: 'Signed in', type: 'success'})
+  }
   const handleSignOut = () => updateUserState({username:'', authenticated: false})
   
+  //Extract to custom hook?
   const [message, updateMessage] = useState({message:'', type:'info'})
-  const showMessage = ({message, type}) => {
+  const showMessage = ({message, type}: Props) => {
+    clearMessage()
     updateMessage({message: message, type: type})
     setTimeout(()=>{clearMessage()}, 3000)
   }

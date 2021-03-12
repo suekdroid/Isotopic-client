@@ -1,23 +1,25 @@
-const pageWrapper = {
+import CSS from 'csstype';
+
+const pageWrapper: CSS.Properties = {
     display: 'flex',
     justifyContent: 'center',
     margin: '50px'
 }
 
-const flexColumn = {
+const flexColumn: CSS.Properties = {
     display: 'flex',
     flexDirection: 'column',
-    gap: '15px'
+    gap: '15px',
 }
 
-const flexRow = {
+const flexRow: CSS.Properties = {
     display: 'flex',
     flexDirection: 'row',
     gap: '10px', 
     alignItems: 'center',
 } 
 
-const btnText = {
+const btnText: CSS.Properties = {
     backgroundColor: 'transparent',
     outline: 'none',
     border: 'none',
@@ -25,9 +27,14 @@ const btnText = {
     fontSize: '14px'
 }
 
+const textError: CSS.Properties = {
+    color: 'orange'
+}
+
 export { 
     pageWrapper, 
     flexColumn, 
     flexRow, 
-    btnText
-}
+    btnText,
+    textError
+}      

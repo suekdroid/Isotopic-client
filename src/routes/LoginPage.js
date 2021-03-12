@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Login } from './Login'
-import { CreateAccount } from './CreateAccount'
+import { Login } from '../components/authentication/Login'
+import { CreateAccount } from '../components/authentication/CreateAccount'
 
 const UI_MODES = {
     LOGIN: 'MODE_LOGIN', 
@@ -30,6 +30,7 @@ function LoginPage(props) {
 
     const handleSubmit = (userCredentials) => {
         props.messageCallback({message:'Signing in', type:'loading'})
+        props.signIn(userCredentials)
     }
     
     return (

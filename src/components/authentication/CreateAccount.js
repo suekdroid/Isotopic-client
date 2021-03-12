@@ -1,29 +1,38 @@
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import { useState } from "react"
 import { flexColumn, flexRow, pageWrapper } from "../../style/SharedStyles"
+import { inputvalidator } from '../../validation/inputvalidator';
+import { TextInput } from '../ui/TextInput';
 
 function CreateAccount(props){
     const [userCredentials, updateCredentials] = useState({ username: '', password: '', email:'', type:'CREATEACCOUNT' })
 
+    const [uiErrors, updateUIErrors] = useState(new Map())
+
     const submitCredentials = (e) => {
         e.preventDefault()
-        const validationError = validateUserInput()
-        if(validationError) {
-            props.messageCallback(validationError)
-        } else {
+        if(isInputValid()) {
             props.onSubmitCredentials(userCredentials)
+        } else {
+            console.log('ui error');
         }
     }
 
-    const validateUserInput = () => {
-        let validationError = {message:'', type:'warning'}
-        if(!userCredentials.username.includes('#')){
-            validationError.message = 'Some UI warning'
-        } else if(userCredentials.password.length<=5){
-            validationError.message = 'Password must be more than 5 characters'
+    const isInputValid = () => {
+        clearUIErrors()
+        const username = userCredentials.username
+        const password = userCredentials.password
+        const email = userCredentials.email
+        const validationErrors = inputvalidator({username, password, email})
+        if(validationErrors.size > 0){
+            updateUIErrors(new Map([...validationErrors]))
+            return false
+        } else {
+            return true
         }
-        return (validationError.message) ? validationError : null
     }
+
+    const clearUIErrors = () => updateUIErrors((prev)=> new Map(prev.clear()))
 
     const navigateBack = (e) => {
         e.preventDefault()
@@ -36,33 +45,34 @@ function CreateAccount(props){
                 action="submit"
                 onSubmit={submitCredentials}
                 className="card" 
-                style={{...flexColumn}}>
+                style={{...flexColumn, ...{padding: '60px 60px 80px 60px'}}}>
 
                 <div style={ flexRow }>
                     <button className="btnIcon" onClick={navigateBack}><ArrowBack/></button>
                     <h2>Create account</h2>
                 </div>
 
-                <input 
+                <TextInput
+                    inputType="text"
+                    label="Username"
                     value={userCredentials.username}
-                    onChange={(e)=>updateCredentials({...userCredentials, username:e.target.value})}
-                    required
-                    type="username" 
-                    placeholder="Username"/>
+                    updateInput={(data)=>updateCredentials({...userCredentials, username:data})}
+                    validationError={uiErrors.get('username')}/>
 
-                <input 
-                    value={userCredentials.email}
-                    onChange={(e)=>updateCredentials({...userCredentials, email:e.target.value})}
-                    type="email" 
-                    placeholder="Email (optional)"
-                    />
-
-                <input 
+                <TextInput
+                    inputType="password"
+                    label="Password"
                     value={userCredentials.password}
-                    onChange={(e)=>updateCredentials({...userCredentials, password:e.target.value})}
-                    required
-                    type="password" 
-                    placeholder="Password"/>
+                    updateInput={(data)=>updateCredentials({...userCredentials, password:data})}
+                    validationError={uiErrors.get('password')}/>    
+
+                <TextInput
+                    inputType="email"
+                    label="Email"
+                    value={userCredentials.email}
+                    updateInput={(data)=>updateCredentials({...userCredentials, email:data})}
+                    validationError={uiErrors.get('email')}
+                    placeholder="(optional)"/> 
 
                 <div style={ flexRow }>
                     <input type="checkbox" required/><label>I accept terms and conditions</label>
