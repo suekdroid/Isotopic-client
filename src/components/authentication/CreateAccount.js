@@ -1,6 +1,6 @@
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import { useState } from "react"
-import { flexColumn, flexRow, pageWrapper } from "../../style/SharedStyles"
+import { flexColumn, flexRow, pageWrapper, textIconAlign } from "../../style/SharedStyles"
 import { inputvalidator } from '../../validation/inputvalidator';
 import { TextInput } from '../ui/TextInput';
 
@@ -12,10 +12,8 @@ function CreateAccount(props){
     const submitCredentials = (e) => {
         e.preventDefault()
         if(isInputValid()) {
-            props.onSubmitCredentials(userCredentials)
-        } else {
-            console.log('ui error');
-        }
+            console.log('Create account API not implemented.');
+        } else {console.log('ui error');}
     }
 
     const isInputValid = () => {
@@ -47,8 +45,8 @@ function CreateAccount(props){
                 className="card" 
                 style={{...flexColumn, ...{padding: '60px 60px 80px 60px'}}}>
 
-                <div style={ flexRow }>
-                    <button className="btnIcon" onClick={navigateBack}><ArrowBack/></button>
+                <div style={ textIconAlign }>
+                    <button className="btnIcon" onClick={navigateBack}><ArrowBack className="materialIcon"/></button>
                     <h2>Create account</h2>
                 </div>
 

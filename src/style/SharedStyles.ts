@@ -31,10 +31,17 @@ const textError: CSS.Properties = {
     color: 'orange'
 }
 
+const textIconAlign: CSS.Properties = {
+    display:'inline-flex', 
+    verticalAlign: 'middle',
+    justifyContent: 'flex-start'
+}
+
 export { 
     pageWrapper, 
     flexColumn, 
     flexRow, 
     btnText,
-    textError
+    textError,
+    textIconAlign
 }      

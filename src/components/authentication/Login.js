@@ -1,9 +1,17 @@
 import { useState } from "react"
+import { getApiErrorDisplayText } from "../../api/ApiErrorHandler"
+import { signInUser } from "../../api/auth/AuthService"
 import { flexColumn, flexRow, pageWrapper, btnText } from "../../style/SharedStyles"
 import { inputvalidator } from '../../validation/inputvalidator'
 import { TextInput } from '../ui/TextInput'
+import { useSelector, useDispatch } from 'react-redux'
+import { setNotification } from '../../store/notificationSlice'
 
 function Login(props){
+
+    const dispatch = useDispatch()
+
+    const storeUser = useSelector(state=>state.user.username)
 
     const [userCredentials, updateCredentials] = useState({ username: '', password: '', rememberSignIn: false, type: 'LOGIN' })
 
@@ -11,10 +19,12 @@ function Login(props){
 
     const submitCredentials = (e) => {
         e.preventDefault()
-        if(isInputValid()) {
-            props.onSubmitCredentials(userCredentials)
+        console.log('Inside submitCredentials')
+        if(isInputValid()){
+            signIn()
+            // console.log('input is valid')
         } else {
-            console.log('ui error');
+            console.log('ui error')
         }
     }
 
@@ -31,6 +41,21 @@ function Login(props){
 
     const clearUIErrors = () => updateUIErrors((prev)=> new Map(prev.clear()))
 
+    const signIn = async() => {
+        console.log(storeUser);
+        dispatch(setNotification({msg:'this is a test notification', type:'info'}))
+        try {
+            // props.messageCallback({message: `Signing in ${userCredentials.username}`, type:'loading'})
+            const res = await signInUser(userCredentials.username, userCredentials.password)
+            if(res.status===200){
+                // props.messageCallback({message: `Succesful sign in!`, type:'success'})
+                // props.signIn({ userCredentials })
+            }
+        } catch (err) {
+            // props.messageCallback({message: getApiErrorDisplayText(err), type: 'error'})
+        }
+    }
+
     const navigateToSignUp = (e) => {
         e.preventDefault()
         props.onNavigate()
@@ -38,13 +63,12 @@ function Login(props){
 
     return (
         <div style={ pageWrapper }>
-            
             <form
                 action="submit"
                 onSubmit={submitCredentials}
                 className="card" 
                 style={{...flexColumn, ...{padding: '60px 60px 80px 60px'}}}>
-
+                
                 <h2>Login</h2>
 
                 <TextInput

@@ -11,14 +11,6 @@ interface NotificationProps {
 
 function Notification(props: NotificationProps){
 
-    const types: {[key:string]: CSS.Properties} = { 
-        error: {backgroundColor: 'rgb(244, 67, 54)'}, 
-        warning: {backgroundColor: 'rgb(220, 130, 0)'},
-        info: {backgroundColor: 'rgb(33, 150, 243)'},
-        loading: {backgroundColor: 'rgb(33, 150, 243)'},
-        success: {backgroundColor: 'rgb(76, 175, 80)'}
-    }
-
     const [notificationType, updateNotificationType] = useState(types.info)
 
     useEffect(()=>{if(props.type){updateNotificationType(types[props.type])}},[props.type])
@@ -27,7 +19,7 @@ function Notification(props: NotificationProps){
         <div style={ notificationContainer}>
                 <div style={ {...notification, ...notificationType } }>
                         {(props.type==='loading') ? <div className="spinner"></div> : <Announcement/>}
-                        <p>{props.message}</p>
+                        <p> {props.message} </p>
                         <button className="btnIcon" onClick={props.dismissNotification}><Close/></button>
                 </div>
         </div>
@@ -35,9 +27,19 @@ function Notification(props: NotificationProps){
     
 }
 
+const types: {[key:string]: CSS.Properties} = { 
+    error: {backgroundColor: 'rgb(244, 67, 54)'}, 
+    warning: {backgroundColor: 'rgb(220, 130, 0)'},
+    info: {backgroundColor: 'rgb(33, 150, 243)'},
+    loading: {backgroundColor: 'rgb(33, 150, 243)'},
+    success: {backgroundColor: 'rgb(76, 175, 80)'}
+}
+
+
 const notification: CSS.Properties = {
     display: 'flex',
     alignItems: 'center',
+    wordWrap: 'break-word',
     justifyContent: 'space-between',
     height: '45px',
     minWidth: '300px',

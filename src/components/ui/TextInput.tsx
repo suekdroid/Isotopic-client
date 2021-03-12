@@ -1,4 +1,4 @@
-import { flexColumn, textError } from "../../style/SharedStyles"
+import { textError } from "../../style/SharedStyles"
 
 interface PropType {
     inputType: string

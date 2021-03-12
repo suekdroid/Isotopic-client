@@ -27,22 +27,15 @@ function LoginPage(props) {
     const propagateCallback = (data) => {
         props.messageCallback(data)
     }
-
-    const handleSubmit = (userCredentials) => {
-        props.messageCallback({message:'Signing in', type:'loading'})
-        props.signIn(userCredentials)
-    }
     
     return (
         <div>
             {(UIState.mode === UI_MODES.LOGIN) ? 
             <Login 
                 onNavigate={setUIState} 
-                onSubmitCredentials={handleSubmit}
                 messageCallback={propagateCallback}/> : 
             <CreateAccount 
                 onNavigate={setUIState}  
-                onSubmitCredentials={handleSubmit}
                 messageCallback={propagateCallback}/>}
         </div>
     )
