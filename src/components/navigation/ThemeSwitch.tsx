@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 function ThemeSwitch(): JSX.Element {
     const [darkmode, changeTheme] = useState(true);
 
     useEffect(() => {
         const body = document.body;
-        console.log("inside useeffect");
+        console.log('inside useeffect');
         if (darkmode) {
-            body.classList.remove("lightTheme");
+            body.classList.remove('lightTheme');
         } else {
-            body.classList.add("lightTheme");
+            body.classList.add('lightTheme');
         }
     }, [darkmode]);
 

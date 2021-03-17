@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Login } from "../components/authentication/Login";
-import { CreateAccount } from "../components/authentication/CreateAccount";
+import { useState } from 'react';
+import { Login } from '../components/authentication/Login';
+import { CreateAccount } from '../components/authentication/CreateAccount';
 
 const UI_MODES = {
-    LOGIN: "MODE_LOGIN",
-    SIGNUP: "MODE_SIGNUP",
+    LOGIN: 'MODE_LOGIN',
+    SIGNUP: 'MODE_SIGNUP',
 };
 
 interface LoginPageProps {

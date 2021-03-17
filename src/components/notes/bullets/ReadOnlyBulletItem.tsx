@@ -1,5 +1,5 @@
-import { Bullet } from "../../../model/Types";
-import { flexRowBetween } from "../../../style/SharedStyles";
+import { Bullet } from '../../../model/Types';
+import { flexRow } from '../../../style/SharedStyles';
 
 interface BulletItemProps {
     key: number;
@@ -9,13 +9,13 @@ interface BulletItemProps {
 function ReadOnlyBulletItem(props: BulletItemProps): JSX.Element {
     return (
         <li>
-            <div style={flexRowBetween}>
-                <p>{props.bullet.bulletText}</p>
+            <div style={flexRow}>
                 <input
                     type="checkbox"
                     checked={props.bullet.checked}
                     readOnly
                 />
+                <p>{props.bullet.bulletText}</p>
             </div>
         </li>
     );

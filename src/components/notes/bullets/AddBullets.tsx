@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { Bullet } from "../../../model/Types";
-import { btnIcon } from "../../../style/SharedStyles";
-import { EditableBulletItem } from "./EditableBulletItem";
-import AddTask from "@material-ui/icons/AddBox";
+import { useEffect, useState } from 'react';
+import { Bullet } from '../../../model/Types';
+import { btnIcon } from '../../../style/SharedStyles';
+import { EditableBulletItem } from './EditableBulletItem';
+import AddTask from '@material-ui/icons/AddBox';
 
 interface AddBulletProps {
     bullets?: Bullet[];
@@ -10,17 +10,31 @@ interface AddBulletProps {
 }
 
 function AddBullets(props: AddBulletProps): JSX.Element {
-    const [bulletList, updateBulletList] = useState<Array<Bullet>>([]);
+    const [bulletList, updateBulletList] = useState<Array<Bullet>>(
+        props.bullets ? [...props.bullets] : []
+    );
 
     useEffect(() => props.onUpdatedBulletArray(bulletList), [bulletList]);
 
     const addEmptyBullet = () => {
         updateBulletList([
             ...bulletList,
-            { bulletText: "", checked: false, bulletID: Math.random() },
+            { bulletText: '', checked: false, bulletID: Math.random() },
         ]);
     };
 
+    //Combine updates to one function
+    const updateBulletCheckedState = (
+        bulletID: number,
+        newCheckedState: boolean
+    ) => {
+        const updatedList = bulletList.map((bullet) =>
+            bullet.bulletID === bulletID
+                ? { ...bullet, checked: newCheckedState }
+                : bullet
+        );
+        updateBulletList([...updatedList]);
+    };
     const updateSingleBullet = (bulletID: number, text: string) => {
         const updatedList = bulletList.map((bullet) =>
             bullet.bulletID === bulletID
@@ -37,12 +51,6 @@ function AddBullets(props: AddBulletProps): JSX.Element {
         updateBulletList([...updatedList]);
     };
 
-    useEffect(() => {
-        if (props.bullets) {
-            updateBulletList([...props.bullets]);
-        }
-    }, []);
-
     return (
         <div>
             <button onClick={addEmptyBullet} style={btnIcon}>
@@ -53,6 +61,7 @@ function AddBullets(props: AddBulletProps): JSX.Element {
                     <EditableBulletItem
                         key={bullet.bulletID}
                         bullet={bullet}
+                        onChangeBulletCheckState={updateBulletCheckedState}
                         onUpdateSingleBullet={updateSingleBullet}
                         onDeleteSingleBullet={deleteSingleBullet}
                     />
@@ -63,8 +72,8 @@ function AddBullets(props: AddBulletProps): JSX.Element {
 }
 
 const bulletListStyle = {
-    maxHeight: "300px",
-    overflow: "auto",
+    maxHeight: '300px',
+    overflow: 'auto',
 };
 
 export { AddBullets };

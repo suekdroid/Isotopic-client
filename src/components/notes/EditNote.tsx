@@ -1,54 +1,53 @@
-import CSS from "csstype";
-import { useEffect, useState } from "react";
+import CSS from 'csstype';
+import { useContext, useState } from 'react';
 import {
     flexRowBetween,
     btnIcon,
     flexColumn,
     pageWrapper,
-} from "../../style/SharedStyles";
-import { TextArea, TextInput } from "../ui/TextInput";
-import { Done, Label, Timer } from "@material-ui/icons";
-import { Bullet, Note } from "../../model/Types";
-import { AddBullets } from "./bullets/AddBullets";
-import { addNoteToServer } from "../../api/content/NoteService";
-import { useDispatch } from "react-redux";
-import { setNotification } from "../../store/notificationSlice";
-import { getApiErrorDisplayText } from "../../api/ApiErrorHandler";
+} from '../../style/SharedStyles';
+import { TextArea, TextInput } from '../ui/TextInput';
+import { Done, Label, Timer } from '@material-ui/icons';
+import { Bullet, Note } from '../../model/Types';
+import { AddBullets } from './bullets/AddBullets';
+import { addNoteToServer } from '../../api/content/NoteService';
+import { useDispatch } from 'react-redux';
+import { setNotification } from '../../store/notificationSlice';
+import { getApiErrorDisplayText } from '../../api/ApiErrorHandler';
+import { UserContext } from '../../App';
 
-interface CreateNoteProps {
+interface EditNoteProps {
     note?: Note;
     onNoteCreated: (noteArray: Note) => void;
 }
 
-function CreateNote(props: CreateNoteProps): JSX.Element {
+function EditNote(props: EditNoteProps): JSX.Element {
     const dispatch = useDispatch();
+    const authState = useContext(UserContext);
 
-    const [note, updateNote] = useState<Note>({
-        owner: "testuser",
-        title: "",
-        content: "",
-        bullets: [],
-    });
-
-    useEffect(() => {
-        console.log(
-            "Inside useEffect in createNote. The note prop bullet list is: ",
-            props.note?.bullets
-        );
-        if (props.note) {
-            updateNote({ ...props.note });
-        }
-    }, []);
+    const [note, updateNote] = useState<Note>(
+        props.note
+            ? { ...props.note }
+            : {
+                  owner: authState.username,
+                  title: '',
+                  content: '',
+                  bullets: [],
+                  _id: undefined,
+                  createdAt: undefined,
+                  updatedAt: undefined,
+              }
+    );
 
     const submitNote = async () => {
-        dispatch(setNotification({ msg: "Creating note", type: "loading" }));
-        console.log("Current note state", note);
+        dispatch(setNotification({ msg: 'Saving note', type: 'loading' }));
+        console.log('Current note state', note);
         try {
             const res = await addNoteToServer(note);
             console.log(res);
             if (res.status === 200) {
                 dispatch(
-                    setNotification({ msg: "Note created!", type: "success" })
+                    setNotification({ msg: 'Note saved!', type: 'success' })
                 );
                 props.onNoteCreated(res.data);
             }
@@ -56,7 +55,7 @@ function CreateNote(props: CreateNoteProps): JSX.Element {
             dispatch(
                 setNotification({
                     msg: getApiErrorDisplayText(err),
-                    type: "error",
+                    type: 'error',
                 })
             );
         }
@@ -76,7 +75,7 @@ function CreateNote(props: CreateNoteProps): JSX.Element {
                     updateInput={(data: string) =>
                         updateNote({ ...note, title: data })
                     }
-                    validationError={""} //REMEMBER
+                    validationError={''} //REMEMBER
                 />
                 {note.title && (
                     <div style={flexColumn}>
@@ -87,7 +86,7 @@ function CreateNote(props: CreateNoteProps): JSX.Element {
                             updateInput={(data: string) =>
                                 updateNote({ ...note, content: data })
                             }
-                            validationError={""} //REMEMBER
+                            validationError={''} //REMEMBER
                         />
                         <div className="dark buttonCard">
                             <div style={flexRowBetween}>
@@ -117,14 +116,14 @@ function CreateNote(props: CreateNoteProps): JSX.Element {
 }
 
 const createNoteStyle: CSS.Properties = {
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-    width: "100%",
-    maxWidth: "500px",
-    padding: "20px",
-    borderRadius: "5px",
-    transition: "1s",
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+    width: '100%',
+    maxWidth: '500px',
+    padding: '20px',
+    borderRadius: '5px',
+    transition: '1s',
 };
 
-export { CreateNote };
+export { EditNote };

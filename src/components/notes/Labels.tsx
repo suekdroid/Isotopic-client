@@ -1,4 +1,4 @@
-import CSS from "csstype";
+import CSS from 'csstype';
 
 function Labels(): JSX.Element {
     return (
@@ -10,13 +10,13 @@ function Labels(): JSX.Element {
     );
 }
 const labelComponentStyle: CSS.Properties = {
-    position: "fixed",
-    bottom: "0px",
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    padding: "10px 20px 10px 20px",
-    alignItems: "center",
+    position: 'fixed',
+    bottom: '0px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: '10px 20px 10px 20px',
+    alignItems: 'center',
 };
 export { Labels };

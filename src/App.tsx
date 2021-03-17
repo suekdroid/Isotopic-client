@@ -1,25 +1,40 @@
-import "./App.css";
-import { NotePage } from "./routes/NotePage";
-import { LoginPage } from "./routes/LoginPage";
-import { useState } from "react";
-import { NotificationUIController } from "./components/ui/NotificationUIController";
-import { Navbar } from "./components/navigation/Navbar";
+import './App.css';
+import { NotePage } from './routes/NotePage';
+import { LoginPage } from './routes/LoginPage';
+import React, { useState } from 'react';
+import { NotificationUIController } from './components/ui/NotificationUIController';
+import { Navbar } from './components/navigation/Navbar';
+
+const defaultAuthState = { username: '', authenticated: false };
+const UserContext = React.createContext(defaultAuthState);
 
 function App(): JSX.Element {
-    const [userState, updateUserState] = useState({
-        username: "",
-        authenticated: true,
-    }); //debugging
-    const handleSignIn = (username: string) => {
-        updateUserState({ username: username, authenticated: true });
-    };
+    // const [userState, updateUserState] = useState({
+    //     username: "",
+    //     authenticated: false,
+    // }); //debugging
+    // const handleSignIn = (username: string) => {
+    //     updateUserState({ username: username, authenticated: true });
+    // };
     // const handleSignOut = () => updateUserState({username:'', authenticated: false})
+
+    const [authState, updateAuthState] = useState({
+        username: '',
+        authenticated: false,
+    });
+
+    const handleSignIn = (username: string) => {
+        updateAuthState({ username: username, authenticated: true });
+        console.log('signing in user with username', username);
+    };
 
     return (
         <div className="App">
             <Navbar />
-            {userState.authenticated ? (
-                <NotePage />
+            {authState.authenticated ? (
+                <UserContext.Provider value={authState}>
+                    <NotePage />
+                </UserContext.Provider>
             ) : (
                 <LoginPage signIn={handleSignIn} />
             )}
@@ -27,5 +42,5 @@ function App(): JSX.Element {
         </div>
     );
 }
-
+export { UserContext };
 export default App;

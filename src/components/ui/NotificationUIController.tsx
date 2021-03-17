@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { clearNotification } from "../../store/notificationSlice";
-import { Notification } from "./Notification";
+import { useEffect } from 'react';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { clearNotification } from '../../store/notificationSlice';
+import { Notification } from './Notification';
 
 function NotificationUIController(): JSX.Element {
     const dispatch = useDispatch();

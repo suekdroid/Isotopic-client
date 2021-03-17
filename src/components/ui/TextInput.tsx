@@ -1,4 +1,4 @@
-import { textError } from "../../style/SharedStyles";
+import { textError } from '../../style/SharedStyles';
 
 //TODO: Separate into two components
 
@@ -13,7 +13,7 @@ interface InputType {
 
 function TextInput(props: InputType): JSX.Element {
     return (
-        <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
             {props.validationError ? (
                 <p style={textError}>{props.validationError}</p>
             ) : (
@@ -41,10 +41,10 @@ function TextArea(props: TextAreaType): JSX.Element {
     return (
         <div
             style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "5px",
-                width: "100%",
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '5px',
+                width: '100%',
             }}
         >
             {props.validationError ? (
@@ -53,7 +53,7 @@ function TextArea(props: TextAreaType): JSX.Element {
                 <p>{props.label}</p>
             )}
             <textarea
-                style={{ minHeight: "120px" }}
+                style={{ minHeight: '120px' }}
                 value={props.value}
                 onChange={(e) => props.updateInput(e.target.value)}
                 placeholder={props.placeholder}

@@ -1,42 +1,42 @@
-import CSS from "csstype";
-import { Note } from "../../model/Types";
-import { CreateNote } from "./CreateNote";
+import CSS from 'csstype';
+import { Note } from '../../model/Types';
+import { EditNote } from './EditNote';
 
 interface NoteModalProps {
     note?: Note;
+    onNoteChanged: (note: Note) => void;
     closeModal: () => void;
 }
 
 function NoteModal(props: NoteModalProps): JSX.Element {
-    const handleOnNoteCreated = () => {
-        console.log("inside handleOnNoteCreated in NoteModal");
-    };
     return (
         <div style={modalStyle}>
             <div style={modalContent}>
-                <CreateNote
+                <EditNote
                     note={props.note}
-                    onNoteCreated={handleOnNoteCreated}
+                    onNoteCreated={(note: Note) => {
+                        props.onNoteChanged(note);
+                        props.closeModal();
+                    }}
                 />
-                <button onClick={() => props.closeModal()}>Close</button>
             </div>
         </div>
     );
 }
 
 const modalStyle: CSS.Properties = {
-    backgroundColor: "rgb(0,0,0,0.8)",
-    width: "100%",
-    height: "100%",
-    position: "fixed",
-    left: "0",
-    top: "0",
+    backgroundColor: 'rgb(0,0,0,0.8)',
+    width: '100%',
+    height: '100%',
+    position: 'fixed',
+    left: '0',
+    top: '0',
 };
 
 const modalContent: CSS.Properties = {
-    marginTop: "20%",
-    marginLeft: "auto",
-    marginRight: "auto",
+    marginTop: '20%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
 };
 
 export { NoteModal };
