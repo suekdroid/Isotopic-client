@@ -1,6 +1,6 @@
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import { useState } from "react"
-import { flexColumn, flexRow, pageWrapper, textIconAlign } from "../../style/SharedStyles"
+import { btnIconText, flexColumn, flexRow, pageWrapper } from "../../style/SharedStyles"
 import { inputvalidator } from '../../validation/inputvalidator';
 import { TextInput } from '../ui/TextInput';
 
@@ -45,10 +45,11 @@ function CreateAccount(props){
                 className="card" 
                 style={{...flexColumn, ...{padding: '60px 60px 80px 60px'}}}>
 
-                <div style={ textIconAlign }>
-                    <button className="btnIcon" onClick={navigateBack}><ArrowBack className="materialIcon"/></button>
-                    <h2>Create account</h2>
-                </div>
+                <button 
+                    style={ btnIconText } 
+                    onClick={navigateBack}>
+                        <ArrowBack/><h3>Create account</h3>
+                </button>
 
                 <TextInput
                     inputType="text"

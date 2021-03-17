@@ -3,7 +3,7 @@ const ERRORTYPE_REQUEST = 'API_REQUEST_ERROR'
 const ERRORTYPE_APPLICATION_ERROR = 'API_APPLICATION_ERROR'
 
 //Logging of API errors
-function logApiError(error:any){
+function logApiError(error:any): void{
     if(error.response){     
         console.log(
             ERRORTYPE_RESPONSE, 
@@ -21,7 +21,7 @@ function logApiError(error:any){
 }
 
 //Returns a presentable text for the UI
-function getApiErrorDisplayText(error:any){
+function getApiErrorDisplayText(error:any): string{
     let errorDisplayText = "An unknown error occurred"
     if(error.response){      
         errorDisplayText = error.response.data.message

@@ -22,7 +22,6 @@ function Login(props){
         console.log('Inside submitCredentials')
         if(isInputValid()){
             signIn()
-            // console.log('input is valid')
         } else {
             console.log('ui error')
         }
@@ -43,16 +42,15 @@ function Login(props){
 
     const signIn = async() => {
         console.log(storeUser);
-        dispatch(setNotification({msg:'this is a test notification', type:'info'}))
         try {
-            // props.messageCallback({message: `Signing in ${userCredentials.username}`, type:'loading'})
+            dispatch(setNotification({msg:`Signing in ${userCredentials.username}`, type:'loading'}))
             const res = await signInUser(userCredentials.username, userCredentials.password)
             if(res.status===200){
-                // props.messageCallback({message: `Succesful sign in!`, type:'success'})
-                // props.signIn({ userCredentials })
+                dispatch(setNotification({msg:`Successful sign in!`, type:'success'}))
+                props.onSuccessfulSignIn(userCredentials.username)
             }
         } catch (err) {
-            // props.messageCallback({message: getApiErrorDisplayText(err), type: 'error'})
+            dispatch(setNotification({msg:getApiErrorDisplayText(err), type:'warning'}))
         }
     }
 

@@ -3,7 +3,7 @@ import CSS from 'csstype';
 const pageWrapper: CSS.Properties = {
     display: 'flex',
     justifyContent: 'center',
-    margin: '50px'
+    margin: '15px'
 }
 
 const flexColumn: CSS.Properties = {
@@ -19,12 +19,40 @@ const flexRow: CSS.Properties = {
     alignItems: 'center',
 } 
 
+const flexRowBetween: CSS.Properties = {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: '10px', 
+    alignItems: 'center',
+} 
+
+
 const btnText: CSS.Properties = {
     backgroundColor: 'transparent',
     outline: 'none',
     border: 'none',
     color: 'white',
     fontSize: '14px'
+}
+
+const btnIconText: CSS.Properties = {
+    backgroundColor: 'transparent',
+    outline: 'none',
+    border: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    position: 'relative',
+    top: '3px'
+}
+
+const btnIcon: CSS.Properties = {
+    backgroundColor: 'transparent',
+    outline: 'none',
+    border: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    position: 'relative',
 }
 
 const textError: CSS.Properties = {
@@ -37,11 +65,20 @@ const textIconAlign: CSS.Properties = {
     justifyContent: 'flex-start'
 }
 
+const alignedIcon: CSS.Properties = {
+    position: 'relative', 
+    top: '1px'
+}
+
 export { 
     pageWrapper, 
     flexColumn, 
     flexRow, 
+    flexRowBetween,
     btnText,
+    btnIcon,
+    btnIconText,
     textError,
-    textIconAlign
+    textIconAlign,
+    alignedIcon
 }      

@@ -1,26 +1,4 @@
-/* RESET */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
 
-/* RESET END */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -39,34 +17,122 @@ body {
   --borderColor: rgb(0, 0, 0, 0.2);
   --borderRadius: 3px;
 
+  --bodyColor: rgb(25, 27, 36);
+  --navColor: rgb(41, 43, 55);
+  --cardColor: rgb(41, 43, 55);
+  --nestedCardColor: rgb(25, 27, 36);
+  --inputColor: rgb(54, 57, 70);
+
+  --textHeadlineColor: rgb(206, 206, 206);
+
+  --darkBlue: rgb(2, 36, 65);
+
   color: var(--textColor);
-  background-color: var(--primaryDarkest);
+  background-color: var(--bodyColor);
   font-size: 16px;
+
+  /* Scrollbars */
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
 }
 
+/* width */
+::-webkit-scrollbar {
+  /* The height property hides the horizontal scrollbar */
+  height: 0px; 
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 0, 0.8);
+}
+
+.lightTheme{
+  --primaryDarkest: rgb(2, 36, 65);
+  --primaryDark: white;
+  --primaryLight: rgb(249, 250, 251);
+  --accentColor: rgb(28, 100, 242);
+  --inputColor: rgb(255, 255, 255);
+  --hoverColor: rgb(228, 228, 228);
+  --textColor: rgb(2, 36, 65);
+  --headlineColor: rgb(235, 235, 235);
+  /* --iconColor: rgb(2, 36, 65); */
+
+  --bodyColor: #d3e0ea;
+  --navColor: #276678;
+  --cardColor: #f6f5f5;
+  --inputColor: #f6f5f5;
+  --nestedCardColor: #1687a7;
+
+  --textHeadlineColor: #eeeeee;
+
+}
+
+.cardColor{
+  background-color: var(--cardColor);
+}
+
+.navigationBarTheme{
+  background-color: var(--navColor);
+  color: var(--textHeadlineColor)
+}
+
+
 .card{
-  background-color: var(--primaryDark);
-  padding: 20px;
+  background-color: var(--cardColor);
+  padding: 10px;
   box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.2);
   border-radius: 5px;
 }
 
-h2{
-  font-size: 1.5em;
+.buttonCard{
+  background-color: var(--nestedCardColor);
+  padding: 5px;
+  box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 
-input {
+.darkest{
+  background-color: var(--primaryDark);
+}
+
+.colorInput{
+  background-color: var(--inputColor);
+}
+
+h1{
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+h2{
+  font-size: 1.4em;
+}
+
+h3{
+  font-size: 1.2em;
+}
+
+input, textarea {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: var(--textColor);
   background-color: var(--inputColor);
   border-color: var(--borderColor);
   outline: none;
-  border-width: 1px;
+  border: none;
+  /* border-width: 1px; */
   border-radius: 5px;
   height: 35px;
   font-size: 1em;
-  padding-left: 6px;
+  padding-left: 10px;
 }
 
 input[type="checkbox"] {
@@ -85,7 +151,7 @@ button{
   padding: 8px;
   background: var(--accentColor);
   border-radius: 5px;
-  color: whitesmoke;
+  color: var(--textColor);
 }
 button:active {transform: translate(1px, 1px);}
 button:hover {opacity: 90%;}
@@ -95,14 +161,12 @@ button:hover {opacity: 90%;}
   outline: none;
   border-radius: 50%;
   position: relative;
-  /* top: -2px; */
 }
 .btnIcon:hover{
   fill-opacity: 70%;
 }
 
 /* Spinner */
-
 .spinner {
   border: 4px solid #f3f3f3; /* Light grey */
   border-top: 4px solid #3498db; /* Blue */
@@ -115,4 +179,60 @@ button:hover {opacity: 90%;}
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Switch */
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  margin-right: 10px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 34px;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 3px;
+  border-radius: 50%;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(16px);
 }

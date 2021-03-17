@@ -1,6 +1,6 @@
 import  { client } from './HttpClient'
 
-function setupRequestInterceptor(){
+function setupRequestInterceptor(): void{
     client.interceptors.request.use(function(config){
         return config
     }, function(error){
@@ -9,4 +9,4 @@ function setupRequestInterceptor(){
 
 }
 
-export {setupRequestInterceptor}
+export { setupRequestInterceptor }
