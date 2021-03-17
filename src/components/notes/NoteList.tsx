@@ -7,6 +7,7 @@ import { NoteModal } from './NoteModal';
 
 interface NoteListProps {
     noteList: Array<Note>;
+    onNoteDeleted: (note: Note) => void;
     onNoteChanged: (note: Note) => void;
 }
 
@@ -53,6 +54,7 @@ function NoteList(props: NoteListProps): JSX.Element {
             </div>
             {modalState.showModal === true && (
                 <NoteModal
+                    onNoteDeleted={props.onNoteDeleted}
                     onNoteChanged={props.onNoteChanged}
                     note={modalState.noteInFocus}
                     closeModal={handleCloseModal}

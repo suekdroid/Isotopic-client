@@ -1,12 +1,14 @@
 import { Menu, Search } from '@material-ui/icons';
 import CSS from 'csstype';
-import { useState } from 'react';
 import { btnIconText, flexRow, pageWrapper } from '../../style/SharedStyles';
 import { TextInput } from '../ui/TextInput';
 
-function SearchNotes(): JSX.Element {
-    const [searchString, updateSearchString] = useState('');
+interface SearchNotesProps {
+    searchString: string;
+    onSearchStringChanged: (searchString: string) => void;
+}
 
+function SearchNotes(props: SearchNotesProps): JSX.Element {
     return (
         <div style={pageWrapper}>
             <div style={createNoteStyle} className="colorInput">
@@ -18,8 +20,10 @@ function SearchNotes(): JSX.Element {
                         inputType="text"
                         label=""
                         placeholder="Search"
-                        value={searchString}
-                        updateInput={(data: string) => updateSearchString(data)}
+                        value={props.searchString}
+                        updateInput={(data: string) =>
+                            props.onSearchStringChanged(data)
+                        }
                         validationError={''} //REMEMBER
                     />
                 </div>

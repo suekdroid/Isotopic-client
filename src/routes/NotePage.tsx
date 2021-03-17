@@ -8,6 +8,10 @@ import { UserContext } from '../App';
 
 function NotePage(): JSX.Element {
     const [noteList, updateNoteList] = useState<Array<Note>>([]);
+    const [filteredNoteList, updateFilteredNoteList] = useState<Array<Note>>(
+        []
+    );
+    const [searchString, updateSearchString] = useState('');
 
     const userContext = useContext(UserContext);
 
@@ -16,33 +20,56 @@ function NotePage(): JSX.Element {
     }, []);
 
     const fetchNotes = async () => {
-        //TODO: Should check if usercontext is properly set?
         const result = await getNotesFromServer(userContext.username);
         if (result.data) {
-            console.log('Result from server in NoteList component', result);
             updateNoteList([...result.data]);
         }
     };
 
-    const handleSearch = () => {
-        console.log('handling search');
-    };
     const handleOnNoteCreated = (note: Note) => {
         updateNoteList([note, ...noteList]);
     };
     const handleOnNoteChanged = (note: Note) => {
-        console.log('Inside handleOnNoteChanged', note);
-        const newNoteList = noteList.map((ele) =>
-            ele._id === note._id ? { ...note } : ele
+        updateNoteList(
+            noteList.map((ele) => (ele._id === note._id ? { ...note } : ele))
         );
-        updateNoteList([...newNoteList]);
     };
+    const handleOnNoteDeleted = (note: Note) => {
+        updateNoteList(noteList.filter((ele) => ele._id !== note._id));
+    };
+
+    const handleSearch = (text: string) => {
+        updateSearchString(text);
+    };
+
+    useEffect(() => {
+        updateFilteredNoteList(
+            noteList.filter(
+                (note) =>
+                    note.title.includes(searchString) ||
+                    note.content.includes(searchString) ||
+                    note.bullets.find((bullet) =>
+                        bullet.bulletText.includes(searchString)
+                    )
+            )
+        );
+    }, [searchString, noteList]);
 
     return (
         <div>
-            <SearchNotes />
-            <EditNote onNoteCreated={handleOnNoteCreated} />
-            <NoteList noteList={noteList} onNoteChanged={handleOnNoteChanged} />
+            <SearchNotes
+                searchString={searchString}
+                onSearchStringChanged={handleSearch}
+            />
+            <EditNote
+                onNoteCreated={handleOnNoteCreated}
+                onNoteDeleted={handleOnNoteDeleted}
+            />
+            <NoteList
+                onNoteDeleted={handleOnNoteDeleted}
+                noteList={filteredNoteList}
+                onNoteChanged={handleOnNoteChanged}
+            />
         </div>
     );
 }

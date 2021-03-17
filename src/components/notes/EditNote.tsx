@@ -7,10 +7,13 @@ import {
     pageWrapper,
 } from '../../style/SharedStyles';
 import { TextArea, TextInput } from '../ui/TextInput';
-import { Done, Label, Timer } from '@material-ui/icons';
+import { Delete, Done, Label, Timer } from '@material-ui/icons';
 import { Bullet, Note } from '../../model/Types';
 import { AddBullets } from './bullets/AddBullets';
-import { addNoteToServer } from '../../api/content/NoteService';
+import {
+    addNoteToServer,
+    deleteNoteFromServer,
+} from '../../api/content/NoteService';
 import { useDispatch } from 'react-redux';
 import { setNotification } from '../../store/notificationSlice';
 import { getApiErrorDisplayText } from '../../api/ApiErrorHandler';
@@ -18,25 +21,27 @@ import { UserContext } from '../../App';
 
 interface EditNoteProps {
     note?: Note;
-    onNoteCreated: (noteArray: Note) => void;
+    onNoteCreated: (note: Note) => void;
+    onNoteDeleted: (note: Note) => void;
 }
 
 function EditNote(props: EditNoteProps): JSX.Element {
     const dispatch = useDispatch();
+
     const authState = useContext(UserContext);
 
+    const emptyNote = {
+        owner: authState.username,
+        title: '',
+        content: '',
+        bullets: [],
+        _id: undefined,
+        createdAt: undefined,
+        updatedAt: undefined,
+    };
+
     const [note, updateNote] = useState<Note>(
-        props.note
-            ? { ...props.note }
-            : {
-                  owner: authState.username,
-                  title: '',
-                  content: '',
-                  bullets: [],
-                  _id: undefined,
-                  createdAt: undefined,
-                  updatedAt: undefined,
-              }
+        props.note ? { ...props.note } : { ...emptyNote }
     );
 
     const submitNote = async () => {
@@ -50,6 +55,8 @@ function EditNote(props: EditNoteProps): JSX.Element {
                     setNotification({ msg: 'Note saved!', type: 'success' })
                 );
                 props.onNoteCreated(res.data);
+                //Clear the UI on success
+                updateNote({ ...emptyNote });
             }
         } catch (err) {
             dispatch(
@@ -58,6 +65,27 @@ function EditNote(props: EditNoteProps): JSX.Element {
                     type: 'error',
                 })
             );
+        }
+    };
+
+    const deleteNote = async () => {
+        if (note._id) {
+            try {
+                const res = await deleteNoteFromServer(note._id);
+                if (res.status === 200) {
+                    props.onNoteDeleted(res.data);
+                }
+                console.log('__DELETION EVENT RESULT', res);
+            } catch (err) {
+                dispatch(
+                    setNotification({
+                        msg: getApiErrorDisplayText(err),
+                        type: 'error',
+                    })
+                );
+            }
+        } else {
+            updateNote({ ...emptyNote });
         }
     };
 
@@ -90,12 +118,14 @@ function EditNote(props: EditNoteProps): JSX.Element {
                         />
                         <div className="dark buttonCard">
                             <div style={flexRowBetween}>
-                                {/* <button onClick={addEmptyBullet} style={ btnIcon }><AddTask/></button> */}
                                 <button style={btnIcon}>
                                     <Label />
                                 </button>
                                 <button style={btnIcon}>
                                     <Timer />
+                                </button>
+                                <button onClick={deleteNote} style={btnIcon}>
+                                    <Delete />
                                 </button>
                                 <button onClick={submitNote} style={btnIcon}>
                                     <Done />

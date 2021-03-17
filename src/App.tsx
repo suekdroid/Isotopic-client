@@ -9,15 +9,6 @@ const defaultAuthState = { username: '', authenticated: false };
 const UserContext = React.createContext(defaultAuthState);
 
 function App(): JSX.Element {
-    // const [userState, updateUserState] = useState({
-    //     username: "",
-    //     authenticated: false,
-    // }); //debugging
-    // const handleSignIn = (username: string) => {
-    //     updateUserState({ username: username, authenticated: true });
-    // };
-    // const handleSignOut = () => updateUserState({username:'', authenticated: false})
-
     const [authState, updateAuthState] = useState({
         username: '',
         authenticated: false,
