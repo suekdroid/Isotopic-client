@@ -6,7 +6,9 @@ Isotopic is a simple Web Application for taking notes and sharing them with your
 
 ## User Design
 
-<img src="./src/assets/UI1.png">
+<img src="https://github.com/suekdroid/Isotopic-client/blob/main/src/assets/UI1.PNG">
+<img src="https://github.com/suekdroid/Isotopic-client/blob/main/src/assets/UIDarkMobile.PNG">
+<img src="https://github.com/suekdroid/Isotopic-client/blob/main/src/assets/UIDarkAddFriend.PNG">
 
 ## Main Technology Stack
 
