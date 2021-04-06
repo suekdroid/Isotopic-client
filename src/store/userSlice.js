@@ -13,7 +13,7 @@ export const userSlice = createSlice({
         },
         signOut: state => {
             state.authenticated = false 
-            state.username = 'merp'
+            state.username = ''
         }
     }
 })

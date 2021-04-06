@@ -2,7 +2,6 @@ const ERRORTYPE_RESPONSE = 'API_RESPONSE_ERROR'
 const ERRORTYPE_REQUEST = 'API_REQUEST_ERROR'
 const ERRORTYPE_APPLICATION_ERROR = 'API_APPLICATION_ERROR'
 
-//Logging of API errors
 function logApiError(error:any): void{
     if(error.response){     
         console.log(
