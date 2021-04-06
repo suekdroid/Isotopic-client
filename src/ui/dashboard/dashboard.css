@@ -1,0 +1,70 @@
+.dashboardRoot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.divContent {
+    width: 100%;
+    /* max-width: 800px; */
+}
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px 20px 10px 20px;
+    background-color: var(--primaryDark);
+    min-width: 20%;
+}
+.btnNavigation {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--textColor);
+}
+
+.selectedLink {
+    background-color: var(--primaryDarkest);
+}
+
+@media (max-width: 600px) {
+    .dashboardRoot {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .sidebar {
+        top: 0;
+        margin: 0;
+        position: sticky;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        height: fit-content;
+        padding: 3px 8px 3px 8px;
+        width: 100%;
+        box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.3);
+    }
+    .textNavigation {
+        display: none;
+    }
+    .inputEnterCommand {
+        display: none;
+    }
+    .logo {
+        display: none;
+    }
+    .usernameparagraph {
+        display: none;
+    }
+}

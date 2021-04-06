@@ -1,0 +1,96 @@
+/* Controller */
+
+.friendcontroller {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+@media (max-width: 700px) {
+    .friendcontroller {
+        justify-content: center;
+    }
+}
+
+/* Add friends */
+
+.addfriends {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px;
+    padding: 12px;
+    border-radius: 2px;
+    width: fit-content;
+    background-color: var(--primaryDark);
+    border-radius: 5px;
+}
+
+.btnSearch {
+    background-color: transparent;
+}
+
+.searchfriends {
+    min-width: 400px;
+}
+
+.addFriendItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addFriendItem button {
+    background-color: transparent;
+}
+
+/* Friend list */
+.chatfriendlist {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 10px;
+    border-radius: 2px;
+    width: 300px;
+    padding: 15px;
+    background-color: var(--primaryDark);
+    border-radius: 5px;
+}
+
+.divnofriends {
+    padding: 20px;
+}
+
+.frienditem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+    justify-content: space-between;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.activeFriend {
+    background-color: var(--primaryDarkest);
+}
+
+.frienditem:hover {
+    background-color: var(--primaryDarkest);
+    cursor: pointer;
+}
+
+.friendinfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.friendname {
+    font-weight: bold;
+}
+
+.friendlastmsg {
+    font-weight: lighter;
+}

@@ -1,14 +1,18 @@
-import './App.css';
-import { NotePage } from './routes/NotePage';
-import { LoginPage } from './routes/LoginPage';
-import React, { useState } from 'react';
-import { NotificationUIController } from './components/ui/NotificationUIController';
-import { Navbar } from './components/navigation/Navbar';
+import { LoginPage } from './ui/authentication/LoginPage';
+import React, { useEffect, useState } from 'react';
+import { NotificationUIController } from './ui/shared/notifications/NotificationUIController';
+import { Navbar } from './ui/navigation/Navbar';
+import { About } from './ui/about/AboutPage';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
+import { CreateAccountPage } from './ui/authentication/CreateAccountPage';
+import { DashboardPage } from './ui/dashboard/DashboardPage';
 
 const defaultAuthState = { username: '', authenticated: false };
 const UserContext = React.createContext(defaultAuthState);
 
 function App(): JSX.Element {
+    const routeHistory = useHistory();
+
     const [authState, updateAuthState] = useState({
         username: '',
         authenticated: false,
@@ -16,22 +20,46 @@ function App(): JSX.Element {
 
     const handleSignIn = (username: string) => {
         updateAuthState({ username: username, authenticated: true });
-        console.log('signing in user with username', username);
+        localStorage.setItem('username', username);
     };
 
+    //TODO: Clear localstorage and authentication on sign out
+
+    useEffect(() => {
+        if (authState.authenticated && authState.username) {
+            routeHistory.push('/dashboard');
+        }
+    }, [authState, routeHistory]);
+
     return (
-        <div className="App">
+        <div>
             <Navbar />
-            {authState.authenticated ? (
-                <UserContext.Provider value={authState}>
-                    <NotePage />
-                </UserContext.Provider>
-            ) : (
-                <LoginPage signIn={handleSignIn} />
-            )}
+            <div>
+                <Switch>
+                    <Route exact path="/">
+                        <About />
+                    </Route>
+                    <Route path="/signin">
+                        <LoginPage signIn={handleSignIn} />
+                    </Route>
+                    <Route path="/createAccount">
+                        <CreateAccountPage signIn={handleSignIn} />
+                    </Route>
+                    <Route path="/dashboard">
+                        {authState.authenticated ? (
+                            <UserContext.Provider value={authState}>
+                                <DashboardPage />
+                            </UserContext.Provider>
+                        ) : (
+                            <Redirect to="/" />
+                        )}
+                    </Route>
+                </Switch>
+            </div>
             <NotificationUIController />
         </div>
     );
 }
+
 export { UserContext };
 export default App;

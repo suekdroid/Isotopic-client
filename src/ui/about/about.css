@@ -1,0 +1,78 @@
+.custom-shape-divider-bottom-1616144830 {
+    position: absolute;
+    /* bottom: -50px; */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1616144830 svg {
+    position: relative;
+    display: block;
+    width: calc(300% + 1.3px);
+    height: 250px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1616144830 .shape-fill {
+    fill: var(--bottomGradient);
+}
+
+.gradient {
+    height: 96vh;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+        175deg,
+        var(--navColor),
+        var(--navColor) 11%,
+        var(--accentColor)
+    );
+}
+
+.aboutHeadline {
+    text-align: center;
+    font-size: 26px;
+    padding-top: 20px;
+    font-weight: 700;
+    color: var(--textHeadlineColor);
+}
+
+.aboutSubHeadline {
+    text-align: center;
+    font-size: 20px;
+    padding-top: 20px;
+    font-weight: 600;
+    margin: 0 50px 0 50px;
+    color: var(--textHeadlineColor);
+}
+
+.aboutParagraph {
+    color: var(--textHeadlineColor);
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+}
+
+.createdWith {
+    position: 'absolute';
+    bottom: '0px';
+    left: '0px';
+}
+
+.routerLink {
+    text-decoration: none;
+}
+
+.basicLink {
+    text-decoration: none;
+    color: #0085cc;
+}
+
+.basicLink:visited {
+    color: #0085cc;
+}

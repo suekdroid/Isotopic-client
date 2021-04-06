@@ -1,0 +1,32 @@
+input,
+textarea {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--textColor);
+    background-color: var(--inputColor);
+    border-color: var(--borderColor);
+    outline: none;
+    border: none;
+    /* border-width: 1px; */
+    border-radius: 5px;
+    height: 35px;
+    font-size: 1em;
+    padding-left: 10px;
+}
+
+input[type='checkbox'] {
+    height: 20px;
+    width: 20px;
+}
+
+input[type='checkbox']:checked {
+    color: var(--accentColor);
+}
+
+.validationError {
+    border: solid 1px rgb(255, 0, 0, 0.1);
+}
+
+.colorInput {
+    background-color: var(--inputColor);
+}

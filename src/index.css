@@ -1,5 +1,7 @@
+html {
+    height: 100%;
+}
 body {
-    margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
         Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -18,7 +20,9 @@ body {
     --borderRadius: 3px;
 
     --bodyColor: rgb(25, 27, 36);
-    --navColor: rgb(41, 43, 55);
+    /* --navColor: rgb(41, 43, 55); */
+    --navColor: rgb(0, 0, 0);
+    --bottomGradient: rgb(0, 0, 0);
     --cardColor: rgb(41, 43, 55);
     --nestedCardColor: rgb(25, 27, 36);
     --inputColor: rgb(54, 57, 70);
@@ -34,28 +38,25 @@ body {
     /* Scrollbars */
     scrollbar-width: none;
     -ms-overflow-style: none;
+    height: 100%;
 }
 
-/* width */
 ::-webkit-scrollbar {
-    /* The height property hides the horizontal scrollbar */
     height: 0px;
-    width: 5px;
+    max-width: 5px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px rgb(0, 0, 0, 0.5);
     border-radius: 10px;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: rgb(0, 0, 0, 0.8);
 }
 
 .lightTheme {
-    --primaryDarkest: rgb(2, 36, 65);
+    --primaryDarkest: rgb(211, 226, 255);
     --primaryDark: white;
     --primaryLight: rgb(249, 250, 251);
     --accentColor: rgb(28, 100, 242);
@@ -66,12 +67,14 @@ body {
     /* --iconColor: rgb(2, 36, 65); */
 
     --bodyColor: #d3e0ea;
-    --navColor: #276678;
+    --navColor: #0085cc;
+    --bottomGradient: whitesmoke;
     --cardColor: #f6f5f5;
     --inputColor: #f6f5f5;
-    --nestedCardColor: #1687a7;
+    --nestedCardColor: rgb(25, 27, 36, 0.9);
 
     --textHeadlineColor: #eeeeee;
+    --responsiveIconColor: rgb(2, 36, 65);
 }
 
 .cardColor {
@@ -90,19 +93,8 @@ body {
     border-radius: 5px;
 }
 
-.buttonCard {
-    background-color: var(--nestedCardColor);
-    padding: 5px;
-    box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.2);
-    border-radius: 5px;
-}
-
 .darkest {
     background-color: var(--primaryDark);
-}
-
-.colorInput {
-    background-color: var(--inputColor);
 }
 
 h1 {
@@ -115,32 +107,7 @@ h2 {
 }
 
 h3 {
-    font-size: 1.2em;
-}
-
-input,
-textarea {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: var(--textColor);
-    background-color: var(--inputColor);
-    border-color: var(--borderColor);
-    outline: none;
-    border: none;
-    /* border-width: 1px; */
-    border-radius: 5px;
-    height: 35px;
-    font-size: 1em;
-    padding-left: 10px;
-}
-
-input[type='checkbox'] {
-    height: 20px;
-    width: 20px;
-}
-
-input[type='checkbox']:checked {
-    color: var(--accentColor);
+    font-size: 1.1em;
 }
 
 button {
@@ -150,7 +117,7 @@ button {
     padding: 8px;
     background: var(--accentColor);
     border-radius: 5px;
-    color: var(--textColor);
+    color: var(--textHeadlineColor);
 }
 button:active {
     transform: translate(1px, 1px);
@@ -164,28 +131,11 @@ button:hover {
     outline: none;
     border-radius: 50%;
     position: relative;
+    margin: 0;
+    padding: 0;
 }
 .btnIcon:hover {
     fill-opacity: 0.7;
-}
-
-/* Spinner */
-.spinner {
-    border: 4px solid #f3f3f3; /* Light grey */
-    border-top: 4px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
 }
 
 /* Switch */

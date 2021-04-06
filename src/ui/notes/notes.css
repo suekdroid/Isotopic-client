@@ -1,0 +1,61 @@
+.iconMaterial {
+    position: relative;
+    top: 4px;
+}
+
+/* EditNoteComponent */
+
+.editNote {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 5px;
+    transition: 1s;
+}
+
+.buttonCard {
+    background-color: var(--nestedCardColor);
+    padding: 5px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+    .editNote {
+        width: 100%;
+        max-height: 400px;
+        padding: 8px;
+        gap: 5px;
+        overflow: scroll;
+    }
+}
+
+/* NoteModalComponent */
+
+.modalStyle {
+    background-color: rgb(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.modalContent {
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 600px) {
+    .modalContent {
+        margin-top: 1%;
+    }
+}
+
+.coloricon {
+    color: var(--responsiveIconColor);
+}

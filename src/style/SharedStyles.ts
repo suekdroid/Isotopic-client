@@ -9,7 +9,14 @@ const pageWrapper: CSS.Properties = {
 const flexColumn: CSS.Properties = {
     display: 'flex',
     flexDirection: 'column',
-    gap: '15px',
+    gap: '10px',
+}
+
+const flexColumnCenter: CSS.Properties = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '35px',
 }
 
 const flexRow: CSS.Properties = {
@@ -26,6 +33,15 @@ const flexRowBetween: CSS.Properties = {
     gap: '10px', 
     alignItems: 'center',
 } 
+
+const flexRowCenter: CSS.Properties = {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: '10px', 
+    alignItems: 'center',
+    justifyContent: 'center'
+}
 
 
 const btnText: CSS.Properties = {
@@ -73,8 +89,10 @@ const alignedIcon: CSS.Properties = {
 export { 
     pageWrapper, 
     flexColumn, 
+    flexColumnCenter,
     flexRow, 
     flexRowBetween,
+    flexRowCenter,
     btnText,
     btnIcon,
     btnIconText,

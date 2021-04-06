@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios'
-import { Note } from '../../model/Types'
+import { Note } from '../../../../model/Types'
 import { client } from '../HttpClient'
 
 const POST_ADD_NOTE = '/note/create'
