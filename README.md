@@ -6,7 +6,11 @@ Isotopic is a simple Web Application for taking notes and sharing them with your
 
 ## User Design
 
+<img src="./src/assets/UI1.png">
+
 ## Main Technology Stack
+
+The application is composed of the technology stack below. The frontend is based around a React application while the backend is composed of the MEN stack (MongoDB, Express, NodeJS). The server is deployed on a secure HTTPS connection on Heroku.
 
 | Frontend technologies |                      Description                       |
 | :-------------------- | :----------------------------------------------------: |
@@ -23,6 +27,7 @@ Isotopic is a simple Web Application for taking notes and sharing them with your
 | Heroku               |           Deployed on Heroku            |
 | Express              | Serving static files and HTTP endpoints |
 | MongoDB              |                Database                 |
+| Json Web Token       |   Security between client and server    |
 
 ## Pipeline
 
@@ -37,4 +42,4 @@ Isotopic is a simple Web Application for taking notes and sharing them with your
 
 ## Contributions
 
-Isotopic is currently not open for contributions. If you want to contribute, please take contact on github :-)
+Isotopic is always open for contributions. If you want to contribute, please take contact on GitHub :-)
