@@ -1,12 +1,13 @@
 ## Isotopic Web
 
-<p align="center"><b>https://isotopic.herokuapp.com/</b></p>
+Isotopic is a simple Web Application for taking notes and sharing them with your fellow Isotopians :writing_hand:. The application has focus on simple and fast user experience and easy extendibility in the code base.
 
-Isotopic is a simple Web Application for taking notes and sharing them with your fellow Isotopians. The application has focus on simple and fast user experience and easy extendibility.
+<p align="center"><strong>Try it on</strong></p>
+<p align="center"><b>https://isotopic.herokuapp.com/</b></p>
 
 ## User Design
 
-You can get a sneak peek of the application in the images below:
+The application is designed from a mobile-first-principle and is usable both on desktop and mobile. The application supports both dark and light themes.
 
 <p><strong>Desktop - Dark theme</strong></p>
 <img src="https://github.com/suekdroid/Isotopic-client/blob/main/src/assets/UI1.PNG">
@@ -14,12 +15,9 @@ You can get a sneak peek of the application in the images below:
 <p><strong>Mobile - Dark theme</strong></p>
 <img src="https://github.com/suekdroid/Isotopic-client/blob/main/src/assets/UIDarkMobile.PNG">
 
-<p><strong>Mobile - Dark theme</strong></p>
-<img src="https://github.com/suekdroid/Isotopic-client/blob/main/src/assets/UIDarkAddFriend.PNG">
-
 ## Main Technology Stack
 
-The application is composed of the technology stack below. The frontend is based around a React application while the backend is composed of the MEN stack (MongoDB, Express, NodeJS). The server is deployed on a secure HTTPS connection on Heroku.
+The application is composed of the technology stack below. The frontend is based on a React application while the backend is composed of the MEN stack (MongoDB, Express, NodeJS). The server is deployed on a secure HTTPS connection on Heroku.
 
 | Frontend technologies |                      Description                       |
 | :-------------------- | :----------------------------------------------------: |
@@ -44,11 +42,11 @@ The application is composed of the technology stack below. The frontend is based
   <strong>Upcoming features: </strong>
 </p>
 
--- Ability to create a user
--- Refactoring of CSS
--- Extended functionality when creating notes adding labels and reminders
--- Ability to share and co-edit notes
+-   Ability to create a user
+-   Refactoring of CSS
+-   Extended functionality when creating notes adding labels and reminders
+-   Ability to share and co-edit notes
 
 ## Contributions
 
-Isotopic is always open for contributions. If you want to contribute, please take contact on GitHub :-)
+Isotopic is always open for contributions. If you want to contribute, feel free to reach out on GitHub :call_me_hand:
