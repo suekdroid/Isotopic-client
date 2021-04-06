@@ -4,6 +4,8 @@ Isotopic is a simple Web Application for taking notes and sharing them with your
 
 <p align="center"><strong>Try it on</strong></p>
 <p align="center">:rocket:<b>https://isotopic.herokuapp.com/</b>:rocket:</p>
+<p align="center">Username: customdemouser</p>
+<p align="center">Password: customdemouser</p>
 
 ## User Design
 
