@@ -1,9 +1,9 @@
 ## Isotopic Web
 
-Isotopic is a simple Web Application for taking notes and sharing them with your fellow Isotopians :writing_hand:. The application has focus on simple and fast user experience and easy extendibility in the code base.
+Isotopic is a simple Web Application for taking notes and sharing them with your fellow Isotopians. The application has focus on simple and fast user experience and easy extendibility in the code base.
 
 <p align="center"><strong>Try it on</strong></p>
-<p align="center"><b>https://isotopic.herokuapp.com/</b></p>
+<p align="center">:rocket:<b>https://isotopic.herokuapp.com/</b>:rocket:</p>
 
 ## User Design
 
